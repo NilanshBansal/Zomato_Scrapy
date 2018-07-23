@@ -8,6 +8,8 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import os
+PWD = os.path.dirname(os.path.realpath(__file__ )) 
 
 BOT_NAME = 'zomato'
 
@@ -54,13 +56,23 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     #'zomato.middlewares.ZomatoDownloaderMiddleware': 543,
+    
+    #SCRAPY FAKE USERAGENT MIDDLEWARE
+    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    # 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    #SCRAPY RANDOM USERAGENT MIDDLEWARE
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    'random_useragent.RandomUserAgentMiddleware': 400,
+    #SCRAPY ROTATING PROXY MIDDLEWARE
     'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
-ROTATING_PROXY_PAGE_RETRY_TIMES = 2
-ROTATING_PROXY_LIST = ['195.13.167.228:53281', '78.111.117.203:8080', '177.74.127.202:53281', '92.255.194.136:8080', '36.89.193.65:53281']
+USER_AGENT_LIST = os.path.join(PWD,"user_agents.txt")
+ROTATING_PROXY_PAGE_RETRY_TIMES = 1
+ROTATING_PROXY_LIST = ['195.13.167.228:53281', '177.74.127.202:53281', '92.255.194.136:8080', '36.89.193.65:53281']
+
+#SPOILED PROXIES FOR TESTING
+# ROTATING_PROXY_LIST = ['195.13.163.228:5381', '78.111.127.203:8080', '177.74.227.202:53281', '92.255.194.236:8080', '36.89.193.65:53281']
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
