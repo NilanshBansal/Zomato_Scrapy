@@ -10,15 +10,39 @@
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 import os
 PWD = os.path.dirname(os.path.realpath(__file__ )) 
+import random
 
 BOT_NAME = 'zomato'
 
 SPIDER_MODULES = ['zomato.spiders']
 NEWSPIDER_MODULE = 'zomato.spiders'
+# userAgents = [
 
+# "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:32.0)",
+# "Mozilla/5.0 (Windows NT 6.1; Win64; x64)",
+# "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko)"
+# "Mozilla/5.0 (X11; CrOS i686 2268.111.0) AppleWebKit/536.11 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko)",
+# "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko)",
+# "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko)",
+# "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko)"
+
+# ]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'zomato (+http://www.yourdomain.com)'
+# USER_AGENT = random.SystemRandom().choice(userAgents)
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -60,17 +84,19 @@ DOWNLOADER_MIDDLEWARES = {
     #SCRAPY FAKE USERAGENT MIDDLEWARE
     # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     # 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+
     #SCRAPY RANDOM USERAGENT MIDDLEWARE
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'random_useragent.RandomUserAgentMiddleware': 400,
+    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    # 'random_useragent.RandomUserAgentMiddleware': 400,
+
+
     #SCRAPY ROTATING PROXY MIDDLEWARE
-    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
-    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+    # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
 USER_AGENT_LIST = os.path.join(PWD,"user_agents.txt")
 ROTATING_PROXY_PAGE_RETRY_TIMES = 1
-ROTATING_PROXY_LIST = ['195.13.167.228:53281', '177.74.127.202:53281', '92.255.194.136:8080', '36.89.193.65:53281']
-
+ROTATING_PROXY_LIST = ['62.159.75.58:53281', '43.228.245.164:80', '186.96.103.174:53281', '46.242.29.169:53281']
 #SPOILED PROXIES FOR TESTING
 # ROTATING_PROXY_LIST = ['195.13.163.228:5381', '78.111.127.203:8080', '177.74.227.202:53281', '92.255.194.236:8080', '36.89.193.65:53281']
 
