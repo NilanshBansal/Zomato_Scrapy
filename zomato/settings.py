@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'zomato.spiders'
 #USER_AGENT = 'zomato (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -56,7 +56,11 @@ DOWNLOADER_MIDDLEWARES = {
     #'zomato.middlewares.ZomatoDownloaderMiddleware': 543,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
+ROTATING_PROXY_PAGE_RETRY_TIMES = 2
+ROTATING_PROXY_LIST = ['195.13.167.228:53281', '78.111.117.203:8080', '177.74.127.202:53281', '92.255.194.136:8080', '36.89.193.65:53281']
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -69,7 +73,7 @@ DOWNLOADER_MIDDLEWARES = {
 #ITEM_PIPELINES = {
 #    'zomato.pipelines.ZomatoPipeline': 300,
 #}
-
+ 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
