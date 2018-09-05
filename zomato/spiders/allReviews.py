@@ -1,7 +1,6 @@
 import scrapy
 import urllib
 import random
-import urllib.parse
 from scrapy.http.request import Request
 import json
 from bs4 import BeautifulSoup
@@ -29,10 +28,10 @@ class AllreviewsSpider(scrapy.Spider):
     def start_requests(self):
         headers = {'user-agent': random.SystemRandom().choice(self.userAgents)}
         
-        query = None
+        
         if query is None:
             query = 'Burger King,Cannaught Place'
-        query = urllib.parse.quote_plus(query)
+        
         yield Request(
             url="https://www.zomato.com/webapi/handlers/Search/index.php?entity_type=city&entity_id=1&type=keyword&search_bar=1&query=" +
                 query + "&without_html=true&zpwa=true",
