@@ -1,6 +1,7 @@
 import scrapy
 import urllib
 import random
+import urllib.parse
 from scrapy.http.request import Request
 import json
 from bs4 import BeautifulSoup
