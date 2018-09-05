@@ -29,8 +29,8 @@ class AllreviewsSpider(scrapy.Spider):
         headers = {'user-agent': random.SystemRandom().choice(self.userAgents)}
         
         
-        if query is None:
-            query = 'Burger King,Cannaught Place'
+        
+        query = 'Burger King,Cannaught Place'
         
         yield Request(
             url="https://www.zomato.com/webapi/handlers/Search/index.php?entity_type=city&entity_id=1&type=keyword&search_bar=1&query=" +
